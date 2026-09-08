@@ -24,6 +24,24 @@ built from your own questions.
 
 ### 1.
 
+list what's in 00-rook/
+
 ### 2.
 
+gh auth login
+
 ### 3.
+
+read the claude.md, and give me a summary
+
+### 4.
+
+explain me why Priya said "August is always soft"? explain me more about the problem of Priya mentioned? what is the relationship between her answer to the problem?
+
+### 5.
+
+tell me as a PM what should i do to achieve the goal?
+
+### 6.
+
+Before we wrap up, two things. First: look back through this session and find the prompts I wrote myself, not the starter I pasted. Save them into 01-origin-story/prompts.md, one per numbered slot, exactly as I typed them. Don't tidy them up. Second: add a few lines to the Working context in CLAUDE.md, anything we figured out today that isn't in there yet and that I'd want you to already know next session.
