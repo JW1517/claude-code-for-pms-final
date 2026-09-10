@@ -113,6 +113,27 @@ since 4.2, given 4.1 shipped push-reliability work and 4.2 fixed a duplicate-not
 Closing Marcus's open question with Wen Li is the highest-priority conversation before the
 regroup.
 
+**Interview + ticket review completed 10 Sep 2026** — read all four console-redesign
+interviews (Ambrose, Dot, Halloran, Kip, in
+[00-rook/feedback/interviews/](00-rook/feedback/interviews)) and all 25 support tickets
+(T-001–T-025, in [00-rook/feedback/tickets/](00-rook/feedback/tickets)). Both sources
+independently confirm the same two failure modes Nadia already had a rough split on: "phone
+never goes off" (16/25 tickets, raised by 2/4 interviewees) and "offer gone before I could
+respond" (9/25 tickets, raised by 3/4 interviewees). Neither source can attribute cause between
+the timeout cut and the routing reweight — that still routes through the Marcus/Wen Li
+conversation and Ravi's proximity-reweighted split above.
+
+A few things worth carrying forward: ticket counts likely *understate* "offer gone too fast" —
+both Ambrose and Halloran described near-misses in interview that were never filed as tickets
+("these things happen"). Four tickets (T-011, T-019, T-020, T-025) show a same-account compound
+pattern — a responder goes quiet for one-plus weeks, then loses the one offer that finally
+arrives — which no interviewee described directly but is arguably the most severe version of
+the problem in the data. And nobody has filed a ticket for the *opposite* problem — a responder
+getting too many callouts — even though Kip described exactly that (The Gale, overloaded, same
+week Meteor Mite went silent); tickets structurally can't surface overload since people don't
+file complaints about being busy, so that risk is likely undercounted everywhere except
+Ravi's raw numbers.
+
 ### Q3 2026 roadmap (owner: Helen Achebe, revised 30 Jun 2026; committed items are locked, route changes through Product)
 
 - **4.2 (committed):** who-gets-pinged change, Availability Confidence score (driven by
