@@ -54,9 +54,11 @@ available).
 
 **Routing priority inputs:** proximity (travel-time estimate, not straight-line), current
 availability, capability match, recent acceptance history. Declining/timing out lowers a
-responder's recent-acceptance component, which lowers their priority on future callouts until
-it recovers. There is no written spec of this logic — Priya flagged writing one as unfinished
-business. The actual implementation lives in [code/dispatch-routing/](00-rook/code/dispatch-routing).
+responder's recent-acceptance component, which lowers their priority on future callouts — and
+that component does **not** decay back up on its own; recovery only happens by being offered a
+callout and accepting it (confirmed in code, see 15 Sep entry below). There is no written spec
+of this logic — Priya flagged writing one as unfinished business. The actual implementation
+lives in [code/dispatch-routing/](00-rook/code/dispatch-routing).
 
 **Where Supply touches Dispatch:** Supply's maintenance scheduler reads the *Responder
 Availability Record* (written by Dispatch, read-only for Supply) to avoid booking maintenance
@@ -133,6 +135,33 @@ getting too many callouts — even though Kip described exactly that (The Gale, 
 week Meteor Mite went silent); tickets structurally can't surface overload since people don't
 file complaints about being busy, so that risk is likely undercounted everywhere except
 Ravi's raw numbers.
+
+**Callout-history data + routing code reviewed (15 Sep 2026)** — analyzed
+[00-rook/data/callout-history.csv](00-rook/data/callout-history.csv) (weekly pings-sent/taken per
+responder, 6/29–8/31) and read [00-rook/code/dispatch-routing/](00-rook/code/dispatch-routing)
+directly. Aggregate acceptance rate: ~77-78% baseline → **54.2% in the ship week (8/10)** →
+recovers to 72.7% by 8/31, still below baseline. Not a uniform decline — it's a
+**redistribution**: Farlight, Meteor Mite, The Undertow, and Vesper collapsed toward zero
+pings/week while The Gale, Nightwell, Stormwrack, Sgt. Falkirk, and Captain Vantage climbed
+sharply over the same weeks (data confirms Kip's Gale/Meteor Mite interview pairing). Cross-checked
+against the 25 tickets: only Farlight and The Undertow agree cleanly with the data; six other
+"gone quiet" tickets (Nightwell, Stormwrack, Sgt. Falkirk, Ironvale, The Drift, Cindermark)
+describe silence for responders whose weekly totals are actually flat or rising — the file is
+weekly-aggregate only, so within-week clustering can't be ruled out. Meteor Mite and Vesper
+collapsed as badly as Farlight but have zero tickets filed. Ticket volume held flat at ~7-8/week
+through 5 Sep even as the rate recovered — the topline number improving does not mean complaints
+are slowing. "August is always soft" still can't be confirmed or denied without Ravi's
+year-over-year pull (still outstanding), but the crash is a one-week cliff exactly at the ship
+date, with total ping volume at its *highest* that week — leans against seasonality as the full
+explanation.
+
+Routing mechanism, confirmed from code: 4.2 changed the ranking weights from proximity
+0.45/history 0.40 to **proximity 0.60/history 0.25**. The recent-acceptance score (+0.08 per
+accept, −0.12 per decline-or-timeout, floor 0/ceiling 1) has an unresolved `TODO(wen, 2019)` in
+`history.py` asking whether it should decay over time — it currently doesn't. Once a responder's
+score drops, the only way back is being offered a callout (now weighted mostly on proximity) and
+accepting it; there's no passive recovery. Worth putting to Wen Li alongside Marcus's original
+open question.
 
 ### Q3 2026 roadmap (owner: Helen Achebe, revised 30 Jun 2026; committed items are locked, route changes through Product)
 
