@@ -163,6 +163,25 @@ score drops, the only way back is being offered a callout (now weighted mostly o
 accepting it; there's no passive recovery. Worth putting to Wen Li alongside Marcus's original
 open question.
 
+**Routing code walked end-to-end, per-responder trace confirmed (17 Sep 2026)** — traced the
+full path file-by-file ([code/dispatch-routing/](00-rook/code/dispatch-routing)) and re-checked
+`pings_sent` (not just acceptance rate) for the four responders who went quiet. Confirms this is
+not "same number of offers, more declines" — offers themselves collapse. Pattern is consistent
+across all four: acceptance rate craters first, in the ship week itself (8/10), while
+`pings_sent` is still near-normal; then `pings_sent` itself craters the following weeks (roughly
+10 → 3-5 → 1-2 → 0-1), i.e. a bad week snowballs into being offered almost nothing. Also
+confirmed directly from code: `record_accepted` in `history.py` is the **only** place anywhere
+in the codebase that raises a responder's score (+0.08), while `record_declined` fires
+identically for an explicit decline or a timeout (−0.12) — no distinction, no passive decay, no
+handler-facing or admin override exists anywhere in `routing.py`, `offer.py`, `availability.py`,
+or `config.py`. This answers **half** of Marcus's 14 Aug question: mechanically, yes, the
+reweighted logic applies uniformly to anyone with a low score, regardless of why it got low —
+there's no special-casing for "declining on purpose" vs. "declining because the world changed
+under them." It does **not** answer the other half — whether this was a deliberate tradeoff
+accepted for 4.2 or an unnoticed side effect of the weight rebalance. The `TODO(wen, 2019)` in
+`history.py` reads like a genuinely unresolved question left on the shelf, not a decision made
+for this release. Still the top item for the Wen Li conversation.
+
 ### Q3 2026 roadmap (owner: Helen Achebe, revised 30 Jun 2026; committed items are locked, route changes through Product)
 
 - **4.2 (committed):** who-gets-pinged change, Availability Confidence score (driven by
