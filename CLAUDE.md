@@ -182,6 +182,25 @@ accepted for 4.2 or an unnoticed side effect of the weight rebalance. The `TODO(
 `history.py` reads like a genuinely unresolved question left on the shelf, not a decision made
 for this release. Still the top item for the Wen Li conversation.
 
+**Quiet-responder brief drafted and prototyped (22 Sep 2026)** — wrote a one-page brief
+(`05-super-speed/brief.md`) proposing a concrete fix ahead of any routing-code change: once a
+responder's `pings_sent` is at/near zero for 2+ consecutive weeks, guarantee them one candidate
+slot on the next capability-matching incident, independent of history-score rank — additive to
+routing, not a weight change, and explicitly not a silent config flip. Built a clickable
+prototype (`05-super-speed/prototype.html`, single file) with three views — Handler roster,
+Responder, History — covering all 15 real handler/responder pairs confirmed from
+`callout-history.csv`. Used Meteor Mite, not Farlight, as the worked example once the data
+confirmed Kip's actual responders are Meteor Mite and The Gale (Farlight's handler is Linda
+Pruitt). The same 2-consecutive-week-quiet rule, applied generically across all 15 responders,
+independently reproduces the 15 Sep finding (Farlight, Meteor Mite, The Undertow, Vesper quiet;
+Ironvale actually rising despite its ticket).
+
+Before this gets built, still open: no named approver (belongs with Wen Li, next to Marcus's
+still-unanswered 14 Aug question — see 17 Sep entry above), no justification for the 2-week
+threshold, no plan for measuring whether it's reaching responders like Meteor Mite who never
+file tickets, no accounting for what a guaranteed slot costs responders already absorbing
+volume (The Gale), and no staged rollout or kill-switch before it goes live.
+
 ### Q3 2026 roadmap (owner: Helen Achebe, revised 30 Jun 2026; committed items are locked, route changes through Product)
 
 - **4.2 (committed):** who-gets-pinged change, Availability Confidence score (driven by
