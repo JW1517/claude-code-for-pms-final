@@ -1,6 +1,7 @@
 Quiet Responder Re-Entry — one-pager
 Product, Dispatch
 22 September 2026
+Owner: Juan Wang (PM, Dispatch)
 
 1. Problem
 
@@ -57,7 +58,21 @@ want to.
   question for Wen Li.
 - Does not touch cover identity or add any identity mapping.
 
-6. Prototype flow (Lab B)
+6. Success measure
+
+Of the responders who cross the 2-consecutive-week-quiet threshold
+(identifiable in callout-history.csv the same way the 15 Sep analysis
+found Farlight, Meteor Mite, The Undertow, and Vesper), track: (a) what
+share receive a re-entry offer within one week of crossing the
+threshold, and (b) whether pings_sent recovers toward baseline in the
+weeks after acceptance, the same way it's tracked for the ship-week
+cohort. Reviewed via Ravi's existing weekly pull rather than a new
+report. A secondary signal worth watching: whether responders like
+Meteor Mite, who never filed a ticket, show up in that recovery data —
+since ticket volume alone won't surface whether the mechanism is
+reaching the people who go quiet without complaining.
+
+7. Prototype flow (Lab B)
 
 1. Dispatch detects Farlight's pings_sent has been ~0 for 2+ consecutive
    weeks.

@@ -1,6 +1,7 @@
 Bulk Callout — one-pager
 Product, Dispatch
 12 January 2026
+Owner: Juan Wang (PM, Dispatch)
 
 Problem
 
@@ -35,10 +36,12 @@ group chat between responders, no bulk requisitions, no change to how
 any individual responder's callout is scored or ranked. If a table
 needs to send different jobs to different people, that's still one
 callout at a time — this is only for "the same job, several people."
+Halloran's Supply-side version (kitting out several responders for one
+shift) is out of scope here — it's a bulk requisition, not a callout,
+and would need its own brief on the Supply side.
 
 Open questions
 
-Flagging this for whoever picks it up next quarter. Console changes
-will need Sofia's input on the multi-select interaction, and
-engineering will need to scope the actual send logic — noting it here
-so it isn't lost, but nobody's picked it up yet.
+Console changes will need Sofia's input on the multi-select
+interaction, and engineering will need to scope the actual send logic
+— neither has happened yet.

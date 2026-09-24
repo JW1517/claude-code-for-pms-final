@@ -201,6 +201,15 @@ threshold, no plan for measuring whether it's reaching responders like Meteor Mi
 file tickets, no accounting for what a guaranteed slot costs responders already absorbing
 volume (The Gale), and no staged rollout or kill-switch before it goes live.
 
+**Review-checklist skill built and run against the brief (24 Sep 2026)** — added a
+project skill (`.claude/skills/review-checklist/`) that runs a fixed 4-point pre-flight
+pass over any brief: names an owner, states a success signal, keeps scope consistent from
+open to close, explains the problem before the fix. Run against `05-super-speed/brief.md`:
+2/4 met — still no named owner and no success metric defined (both already tracked as open
+items above), scope and problem-before-fix ordering are fine. Use this skill on future
+briefs before they circulate; it doesn't replace the open items list, just flags the same
+gaps faster and consistently.
+
 ### Q3 2026 roadmap (owner: Helen Achebe, revised 30 Jun 2026; committed items are locked, route changes through Product)
 
 - **4.2 (committed):** who-gets-pinged change, Availability Confidence score (driven by
